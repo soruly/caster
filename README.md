@@ -24,6 +24,6 @@ Various scripts for handling video files (.bat for windows and .sh for linux)
 `check-video.sh`
 
 ###3rd party programs
-[eac3to](https://forum.doom9.org/showthread.php?t=125966) - Normalize volume (Windows)
-[normalize](http://normalize.nongnu.org/) - Normalize volume (Linux)
+- [eac3to](https://forum.doom9.org/showthread.php?t=125966) - Normalize volume (Windows)
+- [normalize](http://normalize.nongnu.org/) - Normalize volume (Linux)
 
