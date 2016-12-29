@@ -23,3 +23,7 @@ Various scripts for handling video files (.bat for windows and .sh for linux)
 ###Check if video codecs are correct for playback in HTML5 video
 `check-video.sh`
 
+###3rd party programs
+[eac3to](https://forum.doom9.org/showthread.php?t=125966) - Normalize volume (Windows)
+[normalize](http://normalize.nongnu.org/) - Normalize volume (Linux)
+
