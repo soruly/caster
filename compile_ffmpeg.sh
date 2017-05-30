@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo yum install -y autoconf automake bzip2 cmake freetype-devel gcc gcc-c++ git libtool make mercurial nasm pkgconfig zlib-devel libass-devel frei0r-devel openjpeg2-devel libtheora-devel libchromaprint-devel wavpack-devel
+sudo yum install -y autoconf automake bzip2 cmake freetype-devel gcc gcc-c++ git libtool make mercurial nasm pkgconfig zlib-devel libass-devel frei0r-devel openjpeg2-devel libtheora-devel libchromaprint-devel wavpack-devel libvpx-devel x264-devel
 mkdir ~/ffmpeg_sources
 
 cd ~/ffmpeg_sources
