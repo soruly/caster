@@ -1,7 +1,7 @@
 #!/bin/bash
 
-anime_path=/mnt/nfs/data/anime/
-thumb_path=/mnt/nfs/data/anime_thumb/
+anime_path=/mnt/data/anime/
+thumb_path=/mnt/data/anime_thumb/
 tmp_path="/tmp/thumb/${1//$anime_path/}/"
 
 if [[ "$1" == "$anime_path"*.mp4 ]] ; then
@@ -43,7 +43,7 @@ if [ ! -f "$thumbfile" ] || [ "$2" == "-f" ]; then
   mkdir -p "$thumbpath"
 
   echo Generating thumbnail map
-  ffmpeg -y -ss 00:00:00 -i "$file" -frames 1 -vf "select=not(mod(n\,"$n")),scale=160:90,tile=12x12" -qscale:v 2 "$thumbfile"
+  ffmpeg -threads 2 -y -ss 00:00:00 -i "$file" -frames 1 -vf "select=not(mod(n\,"$n")),scale=160:90,tile=12x12" -qscale:v 2 "$thumbfile"
 
   echo Removing temp files
   rm -rf "${tmp_path}"
