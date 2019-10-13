@@ -9,6 +9,12 @@ elif [[ $# -eq 1 ]] ; then
     $0 "$1" "${1%.*}.mp4"
   elif [[ -f "${1%.*}.mkv" ]] ; then
     $0 "$1" "${1%.*}.mkv"
+  elif [[ -f "${1%.*}.avi" ]] ; then
+    $0 "$1" "${1%.*}.avi"
+  elif [[ -f "${1%.*}.wmv" ]] ; then
+    $0 "$1" "${1%.*}.wmv"
+  elif [[ -f "${1%.*}.mpg" ]] ; then
+    $0 "$1" "${1%.*}.mpg"
   else
     echo "No video file is found for $1"
   fi
@@ -38,7 +44,7 @@ elif [[ $# -eq 2 ]] ; then
     -vf scale=-1:-1,ass="'$1'" \
     -c:a aac \
     -ac 2 \
-    -map 0:v -map 0:a:language:jpn \
+    -map 0:v -map 0:a:language:jpn? \
     "$dest"
   fi
 fi
