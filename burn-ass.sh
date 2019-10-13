@@ -1,50 +1,44 @@
 #!/bin/bash
 
-#if [[ -d $1 ]]; then
-#  echo "Dir"
-#elif [[ -f $1 ]] ; then
-#  if [[ $# -eq 2 ]] ; then
-#    if [[ ${2: -4} == ".ass" ]] ; then
-#        echo "Burn ass on video"
-#        #"$0" "$(pwd)/$1" "$(pwd)/$2"
-#      
-#    else
-#      echo "\$2 is not an ass file"
-#    fi
-#  else
-#    echo "Simple video convert"
-#  fi
-#else
-#  echo "\$1 is not a file or directory"
-#fi
 
-export FONTCONFIG_FILE="$(pwd)/font/font.conf"
-export FONTCONFIG_PATH="$(pwd)/font"
+if [[ $# -eq 0 ]] ; then
+  find . -type f -name "*.ass" -exec $0 "{}" \;
+  exit
+elif [[ $# -eq 1 ]] ; then
+  if [[ -f "${1%.*}.mp4" ]] ; then
+    $0 "$1" "${1%.*}.mp4"
+  elif [[ -f "${1%.*}.mkv" ]] ; then
+    $0 "$1" "${1%.*}.mkv"
+  else
+    echo "No video file is found for $1"
+  fi
+elif [[ $# -eq 2 ]] ; then
+  echo "$1"
+  echo "$2"
+  dest="$(dirname "$1")""/output/"$(basename "${1%.*}.mp4")
+  echo "$dest"
 
-echo "Creating fontconfig at $FONTCONFIG_FILE"
+  if ! [[ -f "$dest" ]] ; then
+    export FONTCONFIG_FILE="/home/soruly/Desktop/font/font.conf"
+    export FONTCONFIG_PATH="/home/soruly/Desktop/font"
+    
+    echo $'<?xml version="1.0"?>' > $FONTCONFIG_FILE
+    echo "<fontconfig>" >>  $FONTCONFIG_FILE
+    echo "<dir>$FONTCONFIG_PATH</dir>" >>  $FONTCONFIG_FILE
+    echo "<cachedir>$FONTCONFIG_PATH</cachedir>" >>  $FONTCONFIG_FILE
+    echo "</fontconfig>" >>  $FONTCONFIG_FILE
 
-echo $'<?xml version="1.0"?>' > $FONTCONFIG_FILE
-echo "<fontconfig>" >>  $FONTCONFIG_FILE
-echo "<dir>$FONTCONFIG_PATH</dir>" >>  $FONTCONFIG_FILE
-echo "<cachedir>$FONTCONFIG_PATH</cachedir>" >>  $FONTCONFIG_FILE
-echo "</fontconfig>" >>  $FONTCONFIG_FILE
+    mkdir -p "$(dirname "$1")""/output/"
 
-echo "Created fontconfig at $FONTCONFIG_FILE"
-
-#<match target="pattern">
-#  <test qual="any" name="family"><string>方正大黑_GBK</string></test>
-#  <edit name="family" mode="assign"><string>1_GBK</string></edit>
-#</match>
-
-mkdir -p "$(pwd)/output/"
-
-ffmpeg -y \
--ss 00:00:00 \
--i "$1" \
--map_metadata -1 -map_chapters -1 \
--c:v libx264 -r 24000/1001 -pix_fmt yuv420p -profile:v high -preset medium \
--vf scale=-1:-1,ass="'$2'" \
--c:a aac \
--ac 2 \
--map 0:v -map 0:a:language:jpn \
-"$(pwd)/output/""${1%.*}.mp4"
+    ffmpeg -y \
+    -ss 00:00:00 \
+    -i "$2" \
+    -map_metadata -1 -map_chapters -1 -movflags +faststart \
+    -c:v libx264 -r 24000/1001 -pix_fmt yuv420p -profile:v high -preset medium \
+    -vf scale=-1:-1,ass="'$1'" \
+    -c:a aac \
+    -ac 2 \
+    -map 0:v -map 0:a:language:jpn \
+    "$dest"
+  fi
+fi
