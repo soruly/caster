@@ -25,8 +25,8 @@ elif [[ $# -eq 2 ]] ; then
   echo "$dest"
 
   if ! [[ -f "$dest" ]] ; then
-    export FONTCONFIG_FILE="/home/soruly/Desktop/font/font.conf"
-    export FONTCONFIG_PATH="/home/soruly/Desktop/font"
+    export FONTCONFIG_FILE="/home/soruly/font/font.conf"
+    export FONTCONFIG_PATH="/home/soruly/font"
     
     echo $'<?xml version="1.0"?>' > $FONTCONFIG_FILE
     echo "<fontconfig>" >>  $FONTCONFIG_FILE
@@ -44,7 +44,7 @@ elif [[ $# -eq 2 ]] ; then
     -vf scale=-1:-1,ass="'$1'" \
     -c:a aac \
     -ac 2 \
-    -map 0:v -map 0:a:language:jpn? \
+    -map 0:v -map 0:a \
     "$dest"
   fi
 fi

@@ -12,5 +12,5 @@ ffmpeg -y \
 -vf scale=-1:-1 \
 -c:a aac \
 -ac 2 \
--map 0:v -map 0:a:language:jpn \
+-map 0:v -map 0:a \
 "$dest"
