@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $# -eq 0 ]] ; then
-  find . -type f -name "*.mkv" -o -name "*.mp4" -exec $0 "{}" \;
+  find . -type f \( -iname \*.mkv -o -iname \*.mp4 \) -exec $0 "{}" \;
   exit
 elif [[ $# -eq 1 ]] ; then
   echo "$1"
