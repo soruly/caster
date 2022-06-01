@@ -16,7 +16,7 @@ elif [[ $# -eq 1 ]] ; then
     -i "$1" \
     -map_metadata -1 -map_chapters -1 -movflags +faststart \
     -c:v libx264 -r 24000/1001 -pix_fmt yuv420p -profile:v high -preset medium -crf 23 \
-    -vf scale=-2:-2 \
+    -vf scale="'if(gt(a,16/9),1280,-2)':'if(gt(a,16/9),-2,720)'" \
     -c:a aac \
     -ac 2 \
     -map 0:v -map 0:a \
