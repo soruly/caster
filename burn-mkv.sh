@@ -26,7 +26,7 @@ elif [[ $# -eq 1 ]] ; then
     -i "$1" \
     -map_metadata -1 -map_chapters -1 -movflags +faststart \
     -c:v libx264 -r 24000/1001 -pix_fmt yuv420p -profile:v high -preset medium \
-    -vf scale=-1:-1,subtitles="'$1'" \
+    -vf scale=-1:-1,subtitles="'$1:si=1'" \
     -c:a aac \
     -ac 2 \
     -map 0:v -map 0:a \
