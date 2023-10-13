@@ -44,7 +44,7 @@ elif [[ $# -eq 2 ]] ; then
     -vf scale=-1:-1,ass="'$1'" \
     -c:a aac \
     -ac 2 \
-    -map 0:v -map 0:a \
+    -map 0:v -map 0:a:m:language:jpn \
     "$dest"
   fi
 fi

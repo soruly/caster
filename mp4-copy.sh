@@ -15,10 +15,8 @@ elif [[ $# -eq 1 ]] ; then
     -ss 00:00:00 \
     -i "$1" \
     -map_metadata -1 -map_chapters -1 -movflags +faststart \
-    -c:v libx264 -r 24000/1001 -pix_fmt yuv420p -profile:v high -preset medium -crf 23 \
-    -vf scale="'if(gt(a,16/9),1280,-2)':'if(gt(a,16/9),-2,720)'" \
-    -c:a aac \
-    -ac 2 \
+    -c:v copy \
+    -c:a copy \
     -map 0:v -map 0:a:m:language:jpn \
     "$dest"
   fi

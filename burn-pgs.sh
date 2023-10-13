@@ -13,5 +13,5 @@ ffmpeg -y \
 -filter_complex "[0:s]scale=width=1280:height=720[sub];[0:v][sub]overlay=x=0:y=0" \
 -c:a aac \
 -ac 2 \
--map 0:v -map 0:a:language:jpn \
+-map 0:v -map 0:a:m:language:jpn \
 "$dest"

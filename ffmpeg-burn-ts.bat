@@ -19,7 +19,7 @@ ffmpeg -y ^
 -filter_complex "[0:v]setpts=PTS-STARTPTS[v0];[0:s]setpts=PTS-STARTPTS-1/TB[s0];[s0]scale=width=2732:height=1080[sub];[v0][sub]overlay=x=0:y=0"
 -c:a libfdk_aac ^
 -ac 2 ^
--map 0:v -map 0:a ^
+-map 0:v -map 0:a:language:jpn ^
 "MP4\%%~nf.mp4"
 )
 

@@ -29,7 +29,7 @@ elif [[ $# -eq 1 ]] ; then
     -vf scale=-1:-1,subtitles="'$1:si=1'" \
     -c:a aac \
     -ac 2 \
-    -map 0:v -map 0:a \
+    -map 0:v -map 0:a:m:language:jpn \
     "$dest"
   fi
 fi

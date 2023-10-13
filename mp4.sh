@@ -19,7 +19,7 @@ elif [[ $# -eq 1 ]] ; then
     -vf scale=-2:-2 \
     -c:a aac \
     -ac 2 \
-    -map 0:v -map 0:a \
+    -map 0:v -map 0:a:m:language:jpn \
     "$dest"
   fi
 fi
